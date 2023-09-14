@@ -1,0 +1,10 @@
+
+{% extends 'base.html.twig' %}
+{% block title %}Wild Series{% endblock %}
+
+{% block body %}
+    {% for program in programs %}
+        <p>{{ program.id }}</p>
+    {% endfor %}
+
+{% endblock %}

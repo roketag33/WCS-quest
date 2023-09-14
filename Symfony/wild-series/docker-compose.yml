@@ -1,0 +1,28 @@
+version: '3'
+
+services:
+###> doctrine/doctrine-bundle ###
+  database:
+    container_name: wild-db
+    image: mysql:8.0
+    command: --default-authentication-plugin=mysql_native_password
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: wild-serie
+      MYSQL_USER: alexandre
+      MYSQL_PASSWORD: root
+    ports:
+      - '3308:3306'
+    volumes:
+      - ./mysql:/var/lib/mysql
+  wild-series:
+    container_name: wild-series
+    ports:
+      - '80:80'
+    build:
+      context: .
+      dockerfile: Dockerfile
+    depends_on:
+      - database
+    volumes:
+      - .:/var/www
